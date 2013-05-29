@@ -62,6 +62,7 @@
 					<linkerStartOptions>
 						<compilerStartOption>-shared -O2 -s -DNDEBUG -m32</compilerStartOption>
 					</linkerStartOptions>
+					<linkerOutputDirectory>${project.build.directory}/win32-x86</linkerOutputDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
