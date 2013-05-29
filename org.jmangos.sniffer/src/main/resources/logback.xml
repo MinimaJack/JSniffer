@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+  Copyright (c) 2013 MinimaJack
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Lesser Public License v2.1
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  
+  Contributors:
+      MinimaJack - initial API and implementation
+-->
+<configuration>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder 
+			by default -->
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.hibernate.SQL" level="DEBUG" />
+	<logger name="org.jmangos.commons.model.base" level="DEBUG" />
+	<logger name="org.jmangos.realm.network.packet.wow.client"
+		level="DEBUG" />
+
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>log/main.log</file>
+
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

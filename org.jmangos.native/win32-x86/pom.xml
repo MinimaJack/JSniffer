@@ -1,0 +1,55 @@
+<!--
+  Copyright (c) 2013 MinimaJack
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Lesser Public License v2.1
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  
+  Contributors:
+      MinimaJack - initial API and implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jmangos.sniffer</groupId>
+		<artifactId>linkages</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>win32-x86</artifactId>
+	<name>win32-x86</name>
+	<packaging>dll</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>native-maven-plugin</artifactId>
+				<version>1.0-alpha-7</version>
+				<extensions>true</extensions>
+
+				<configuration>
+					<compilerProvider>generic-classic</compilerProvider>
+					<compilerExecutable>g++</compilerExecutable>
+					<linkerExecutable>g++</linkerExecutable>
+					<javahOS>win32</javahOS>
+					<sources>
+						<source>
+							<directory>${native.source.dir}</directory>
+							<fileNames>
+								<fileName>org.jmangos.native.cpp</fileName>
+							</fileNames>
+						</source>
+						<source>
+							<directory>${native.source.dir}/include</directory>
+						</source>
+					</sources>
+					<linkerSecondaryOutputExtensions>dll</linkerSecondaryOutputExtensions>
+					<linkerStartOptions>
+						<compilerStartOption>-shared -O2 -s -DNDEBUG -m32</compilerStartOption>
+					</linkerStartOptions>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,68 @@
+<!--
+  Copyright (c) 2013 MinimaJack
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Lesser Public License v2.1
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+  
+  Contributors:
+      MinimaJack - initial API and implementation
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jmangos.sniffer</groupId>
+		<artifactId>org.jmangos</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>linkages</artifactId>
+	<name>linkages</name>
+	<properties>
+		<native.source.dir>./../src/main/native/</native.source.dir>
+	</properties>
+	<packaging>pom</packaging>
+	<profiles>
+
+		<profile>
+			<id>add-windows-x86-module</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<modules>
+				<module>win32-x86</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>add-windows-amd64-module</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<modules>
+				<module>win32-amd64</module>
+			</modules>
+		</profile>
+
+		<!-- use this during release:prepare -->
+		<profile>
+			<id>all</id>
+			<activation>
+				<property>
+					<name>platform</name>
+					<value>all</value>
+				</property>
+			</activation>
+			<modules>
+				<module>win32-x86</module>
+				<module>win32-amd64</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>
