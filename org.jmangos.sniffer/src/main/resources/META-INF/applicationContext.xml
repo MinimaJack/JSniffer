@@ -27,7 +27,7 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:./config/sniffer.properties</value>
+				<value>classpath:./sniffer.properties</value>
 			</list>
 		</property>
 	</bean>
