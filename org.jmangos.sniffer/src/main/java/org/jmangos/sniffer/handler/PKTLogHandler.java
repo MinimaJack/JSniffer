@@ -50,6 +50,7 @@ public class PKTLogHandler implements PacketLogHandler {
     public void init() {
         final String date = String.format("%X", System.currentTimeMillis());
         final ByteBuffer buffer = ByteBuffer.allocate(66);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
         buffer.put("PKT".getBytes());
         buffer.put((byte) 1);
         buffer.put((byte) 3);
