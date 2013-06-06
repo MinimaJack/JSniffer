@@ -64,7 +64,7 @@
 					</sources>
 					<linkerSecondaryOutputExtensions>dll</linkerSecondaryOutputExtensions>
 					<linkerStartOptions>
-						<compilerStartOption>-shared -O2 -s -DNDEBUG -m64</compilerStartOption>
+						<compilerStartOption>-shared -O2 -s -DNDEBUG -m64 -static-libgcc -static-libstdc++</compilerStartOption>
 					</linkerStartOptions>
 					<linkerOutputDirectory>${project.build.directory}/win32-amd64</linkerOutputDirectory>
 				</configuration>

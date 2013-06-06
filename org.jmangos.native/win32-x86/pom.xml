@@ -60,7 +60,7 @@
 					</sources>
 					<linkerSecondaryOutputExtensions>dll</linkerSecondaryOutputExtensions>
 					<linkerStartOptions>
-						<compilerStartOption>-shared -O2 -s -DNDEBUG -m32</compilerStartOption>
+						<compilerStartOption>-shared -O2 -s -DNDEBUG -m32 -static-libgcc -static-libstdc++</compilerStartOption>
 					</linkerStartOptions>
 					<linkerOutputDirectory>${project.build.directory}/win32-x86</linkerOutputDirectory>
 				</configuration>
