@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataScripts>
+		<script id="TestScript"  name="org.rumangos.sniffer.TestScript" path="./script/TestScript.java" />
+		<script id="UiLogger"  name="org.rumangos.sniffer.UiLogger" path="./script/UiLogger.java" />
+</DataScripts>
