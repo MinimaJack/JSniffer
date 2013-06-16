@@ -36,6 +36,7 @@ public class WoWKeyReader {
 	private int connectionOffset;
 	@Value("${sniffer.key}")
 	private int keyOffset;
+	private int baseAddress;
 
 	public WoWKeyReader() {
 		try {
@@ -70,15 +71,16 @@ public class WoWKeyReader {
 	synchronized public byte[] getKey() {
 		if (this.authKey == null) {
 			INSTANCE.EnableDebugPriv();
+			int processId = INSTANCE.GetTargetProcessId("wow.exe");
 			final HANDLE wow = com.sun.jna.platform.win32.Kernel32.INSTANCE
 					.OpenProcess(Kernel32.PROCESS_QUERY_INFORMATION
 							| Kernel32.PROCESS_VM_READ, true,
-							INSTANCE.GetTargetProcessId("wow.exe"));
-
+							processId);
+			this.baseAddress = INSTANCE.GetBaseAddress(processId, "wow.exe");
 			if (wow != null) {
 				final Memory connection = new Memory(4);
 				int bytes = INSTANCE.ReadMemory(wow, new Pointer(
-						this.connectionOffset), connection, (int) connection
+						this.connectionOffset + this.baseAddress), connection, (int) connection
 						.size());
 				final Memory key = new Memory(40);
 				final Pointer array = new Pointer(connection.getInt(0)

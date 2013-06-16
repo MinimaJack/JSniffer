@@ -52,6 +52,27 @@ extern "C" __declspec(dllexport) DWORD GetTargetProcessId(LPCWSTR lpProcName) {
    return 0;
 }
 
+extern "C" __declspec(dllexport) DWORD GetBaseAddress(DWORD ProcessID, LPCWSTR lpProcName) {
+   MODULEENTRY32 pe;
+   HANDLE moSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, ProcessID);
+   pe.dwSize = sizeof(MODULEENTRY32);
+
+   if(moSnapshot != INVALID_HANDLE_VALUE) {
+      if(Module32First(moSnapshot, &pe)) {
+         do {
+            if(StrStrI(pe.szModule, lpProcName)) {
+               CloseHandle(moSnapshot);
+               return *((DWORD*)(&pe.modBaseAddr));
+            }
+         } while(Module32Next(moSnapshot, &pe));
+      }
+      
+      CloseHandle(moSnapshot);
+   }
+
+   return 0;
+}
+
 extern "C" __declspec(dllexport) SIZE_T ReadMemory(HANDLE hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize) {
    SIZE_T numBytesRead;
    if(!ReadProcessMemory(hProcess, lpBaseAddress, lpBuffer, nSize, &numBytesRead)) {

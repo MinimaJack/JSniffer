@@ -19,6 +19,8 @@ public interface Tools extends com.sun.jna.platform.win32.Kernel32 {
     boolean Inject(int dwPid, String lpDll);
 
     int GetTargetProcessId(String lpProcName);
+    
+    int GetBaseAddress(int dwPid, String lpProcName);
 
     int ReadMemory(HANDLE hProcess, Pointer lpBaseAddress, Pointer lpBuffer, int nSize);
 
